@@ -6,10 +6,17 @@ Content-Type: application/json
 
 
 {
-    "name":"maquire"
+    "name":"smith"
 }
 ###
-PATCH http://localhost:8080/api
+    
+PATCH http://localhost:8080/api/6500e3791a8e1e76f86eb57a
+Content-Type: application/json
+
+
+{
+    "name":"bernad"
+}
 ###
 
 DELETE http://localhost:8080/api

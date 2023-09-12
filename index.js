@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 let PORT = 8080;
 let model = require("./models/model");
 let ec2_url = "mongodb://54.221.51.134:27017";
-let mongo_url = "mongodb://127.0.0.1:27017";
+// let mongo_url = "mongodb://127.0.0.1:27017";
 let connect_mongodb = async (url) => {
   let conn = await mongoose.connect(url, { dbName: "api_test" });
   console.log("successfully connected to mongodb");
 };
-connect_mongodb(mongo_url);
+connect_mongodb(ec2_url);
 
 let server = express();
 server.use(express.json());
@@ -20,7 +20,7 @@ server.post("/api", async (req, res) => {
     } else {
       let user = new model({ name: req.body.name });
       await user.save();
-      res.status(201).send(user._id);
+      res.status(201).send(user);
     }
   } catch (err) {
     res.status(400).send(err.message);
@@ -41,12 +41,18 @@ server.get("/api/:user_id", async (req, res) => {
 });
 server.patch("/api/:user_id", async (req, res) => {
   let id = req.params.user_id;
+  let { name } = req.body;
   try {
     let user = await model.find({ _id: id });
     if (user.length == 0) {
       throw new Error(`invalid id ${id}`);
     }
-    await model.updateOne({ _id: id }, { $set: { name: "messi" } });
+    await model.updateOne({ _id: id }, { $set: { name: name } });
+    let responce = {
+      message: "user updates",
+      id: user._id,
+      new_name: name,
+    };
     res.status(200).send(user);
   } catch (err) {
     res.status(404).send(err.message);
@@ -61,7 +67,12 @@ server.delete("/api/:user_id", async (req, res) => {
       throw new Error(`invalid id ${id}`);
     }
     await model.deleteOne({ _id: id });
-    res.status(200).send(`${id}`);
+    let responce = {
+      message: "user deleted",
+      id: user._id,
+      name: user.name,
+    };
+    res.status(200).json(responce);
   } catch (err) {
     res.status(404).send(err.message);
   }
