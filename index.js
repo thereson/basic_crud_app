@@ -13,45 +13,59 @@ connect_mongodb(mongo_url);
 let server = express();
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+server.post("/api", async (req, res) => {
+  try {
+    if (JSON.stringify(req.body) === "{}") {
+      throw new Error("invalid request body");
+    } else {
+      let user = new model({ name: req.body.name });
+      await user.save();
+      res.status(201).send(user._id);
+    }
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+});
 
 server.get("/api/:user_id", async (req, res) => {
   let id = req.params.user_id;
   let user = await model.find({ _id: id });
-  if (user.length === 0) {
-    return res.json(`no record of any user with the id ${id}`);
+  try {
+    if (user.length === 0) {
+      throw new Error(`id ${id} not found`);
+    }
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(404).send(err.message);
   }
-  res.json(user);
+});
+server.patch("/api/:user_id", async (req, res) => {
+  let id = req.params.user_id;
+  try {
+    let user = await model.find({ _id: id });
+    if (user.length == 0) {
+      throw new Error(`invalid id ${id}`);
+    }
+    await model.updateOne({ _id: id }, { $set: { name: "messi" } });
+    res.status(200).send(user);
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
 });
 
-server.post("/api", async (req, res) => {
-  console.log(req.body);
-  try {
-    if (JSON.stringify(req.body) === "{}") {
-      res.send("please pass in a request body");
-    } else {
-      let user = new model({ name: req.body.name });
-      await user.save();
-      res.send(user._id);
-    }
-  } catch (err) {
-    console.log(err.message);
-    res.send(err.message);
-  }
-});
 server.delete("/api/:user_id", async (req, res) => {
   let id = req.params.user_id;
-  let user = await model.find({ _id: id });
-  console.log(user);
-  if (user.length == 0) {
-    return res.send(
-      "No record of any user with the id" + `${id}` + " " + "found"
-    );
+  try {
+    let user = await model.find({ _id: id });
+    if (user.length == 0) {
+      throw new Error(`invalid id ${id}`);
+    }
+    await model.deleteOne({ _id: id });
+    res.status(200).send(`${id}`);
+  } catch (err) {
+    res.status(404).send(err.message);
   }
-  await model.deleteOne({ _id: id });
-  res.send(`successfully deleted user with the id ${id}`);
 });
-
-server.patch("/api/:user_id", (req, res) => {});
 
 server.listen(8080, () => {
   console.log(`server listening on port ${PORT}`);

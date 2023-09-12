@@ -1,0 +1,17 @@
+GET http://localhost:8080/api/64fdfa6687ae4b0906fff243
+###
+
+POST http://localhost:8080/api
+Content-Type: application/json
+
+
+{
+    "name":"maquire"
+}
+###
+PATCH http://localhost:8080/api
+###
+
+DELETE http://localhost:8080/api
+###
+
