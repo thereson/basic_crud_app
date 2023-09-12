@@ -2,7 +2,7 @@
 ## setup
 
 this API is solely written in nodejs and the database is a mongodb docker image runing on a remote aws ec2 instance.
-to setup the API on your local machine you need nodejs install and curl for testing endpint. clone the repo and run the commands below.
+to setup the API on your local machine you need nodejs install and curl for testing endpint and stable internet connection for connection to the database. clone the repo and run the commands below.
 
 ## Running the API
 - run   `npm install` to download the dependencies
