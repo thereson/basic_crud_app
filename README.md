@@ -13,7 +13,7 @@ creating user
 `POST /api`
 
 ```bash
-$ curl -H "Content-Type: application/json" -d "{\"name\": \"john doe\"}" http://localhost:3000/api
+$ curl -H "Content-Type: application/json" -d "{\"name\": \"john doe\"}" http://localhost:8080/api
 ```
 #### Response 
 ```json
@@ -34,7 +34,7 @@ $ curl -H "Content-Type: application/json" -d "{\"name\": \"john doe\"}" http://
 
  #### Sample Request
  ```bash
-$ curl -X GET http://localhost:3000/api/64ff4375a4c23d8fcb95a4f5
+$ curl -X GET http://localhost:8080/api/64ff4375a4c23d8fcb95a4f5
  ```
 
 #### Response
@@ -58,7 +58,7 @@ $ curl -X GET http://localhost:3000/api/64ff4375a4c23d8fcb95a4f5
 #### Sample Request
 
 ```bash
-$ curl -X PATCH -H "Content-Type: application/json" -d '{\"name\": \"tomson\"}' http://localhost:3000/api/64ff4375a4c23d8fcb95a4f5
+$ curl -X PATCH -H "Content-Type: application/json" -d '{\"name\": \"tomson\"}' http://localhost:8080/api/64ff4375a4c23d8fcb95a4f5
 ```
 
 #### Response
@@ -81,7 +81,7 @@ $ curl -X PATCH -H "Content-Type: application/json" -d '{\"name\": \"tomson\"}' 
 #### Sample Request
 
 ```bash
-$ curl -X DELETE http://localhost:3000/api/64ff4375a4c23d8fcb95a4f5
+$ curl -X DELETE http://localhost:8080/api/64ff4375a4c23d8fcb95a4f5
 ```
 
 #### Response
