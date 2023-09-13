@@ -1,24 +1,25 @@
-GET http://localhost:8080/api/64fdfa6687ae4b0906fff243
+GET http://localhost:8080/api/65016e77f7ac3d022c2e015a
 ###
 
 POST http://localhost:8080/api
 Content-Type: application/json
 
 
+
 {
-    "name":"smith"
+    "name":"enzos"
 }
 ###
     
-PATCH http://localhost:8080/api/6500e3791a8e1e76f86eb57a
+PATCH http://localhost:8080/api/65017193f7ac3d022c2e016d
 Content-Type: application/json
 
 
 {
-    "name":"bernad"
+    "name":"larken"
 }
 ###
 
-DELETE http://localhost:8080/api
+DELETE http://localhost:8080/api/650170eaf7ac3d022c2e0169
 ###
 

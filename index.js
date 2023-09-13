@@ -10,7 +10,7 @@ let connect_mongodb = async (url) => {
   let conn = await mongoose.connect(url, { dbName: "api_test" });
   console.log("successfully connected to mongodb");
 };
-connect_mongodb(mongo_url);
+connect_mongodb(ec2_url);
 
 let server = express();
 server.use(express.json());
