@@ -1,7 +1,7 @@
-GET http://localhost:8080/api/65016e77f7ac3d022c2e015a
+GET https://zuri-stage2-3zgm.onrender.com/api/65023b766b2ca26dc026d532
 ###
 
-POST http://localhost:8080/api
+POST https://zuri-stage2-3zgm.onrender.com/api
 Content-Type: application/json
 
 
@@ -11,15 +11,15 @@ Content-Type: application/json
 }
 ###
     
-PATCH http://localhost:8080/api/65017193f7ac3d022c2e016d
+PATCH https://zuri-stage2-3zgm.onrender.com/api/65023b766b2ca26dc026d532
 Content-Type: application/json
 
 
 {
-    "name":"larken"
+    "name":"diamond"
 }
 ###
 
-DELETE http://localhost:8080/api/650170eaf7ac3d022c2e0169
+DELETE https://zuri-stage2-3zgm.onrender.com/api/650170eaf7ac3d022c2e0169
 ###
 
