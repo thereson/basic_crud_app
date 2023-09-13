@@ -41,11 +41,11 @@ router.patch("/api/:user_id", async (req, res) => {
     }
     await model.updateOne({ _id: id }, { $set: { name: name } });
     let responce = {
-      message: "user updates",
+      message: "user updated",
       id: user._id,
-      new_name: req.body.name,
+      new_name: name,
     };
-    res.status(200).send(user);
+    res.status(200).send(responce);
   } catch (err) {
     res.status(404).send(err.message);
   }
